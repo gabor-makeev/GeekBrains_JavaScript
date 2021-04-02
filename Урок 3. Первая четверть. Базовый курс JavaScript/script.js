@@ -50,9 +50,7 @@ let shoppingCart = [
 function countBasketPrice (cart) {
     let price = 0;
     for (let i = 0; i < cart.length; i++) {
-        for (let j = 0; j < cart[i][1]; j++) {
-            price += cart[i][2];
-        }
+        price += cart[i][1] * cart[i][2];
     }
     console.log(`Цена всех товаров в корзине: $${price.toFixed(2)}`);
 }
