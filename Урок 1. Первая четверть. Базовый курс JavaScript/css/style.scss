@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400;500;600;700;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: lightgray;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.wrapper {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 100px 0 0 0;
+}
+
+.homework-link {
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgb(53, 51, 51);
+    color: #ffffff;
+    padding: 15px;
+    border: 2px solid #221;
+    border-radius: 25px;
+    transition: 0.3s;
+    -webkit-box-shadow: 1px 1px 3px 3px #242424;
+    box-shadow: 1px 1px 3px 3px #242424;
+    
+
+    &:hover {
+        background-color: white;
+        color: #221;
+    }
+
+    &:active {
+        border-color: white;
+        box-shadow: none;
+    }
+}
+
+
+
