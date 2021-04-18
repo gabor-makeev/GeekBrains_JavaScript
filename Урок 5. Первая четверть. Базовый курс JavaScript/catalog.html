@@ -7,6 +7,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="catalog.js" defer></script>
     <title>Урок 5. Введение в DOM (Catalog)</title>
+    <style>
+        #catalog {
+            width: 1000px;
+            border: 1px solid saddlebrown;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            margin: 0px auto;
+            gap: 20px;
+        }
+
+        .catalog-item {
+            width: 20%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <div id="catalog"></div>

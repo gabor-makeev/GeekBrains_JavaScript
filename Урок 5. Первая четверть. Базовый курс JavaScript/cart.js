@@ -31,10 +31,13 @@ let catalog = {
             price: 3.99,
         }
     ],
-}
+};
 
-let shoppingCart = {
-    cartContent: [
+// tasks 3 - 3.2
+
+let cart = {
+    cartBlock: null,
+    content: [
         {
             itemId: '#004',
             quantity: 3,
@@ -53,67 +56,50 @@ let shoppingCart = {
         },
     ],
 
-    totalPrice() {
-        let sum = 0;
-        for (let i = 0; i < this.cartContent.length; i++) {
-            for (let j = 0; j < catalog.products.length; j++) {
-                if (this.cartContent[i].itemId === catalog.products[j].itemId) {
-                    sum += this.cartContent[i].quantity * catalog.products[j].price;
-                }
-            }
-        }
-        return sum;
-    },
-}
-
-// tasks 3 - 3.2
-
-let cartHTML = {
-    settings: {
-        width: '500px',
-        height: '500px',
-        border: '1px solid black',
-        margin: '0 auto',
-        display: 'flex',
-        ['flex-wrap']: 'wrap',
-        ['justify-content']: 'space-evenly',
-    },
-    cartBlock: document.querySelector('.cart-block'),
-    style() {
-        for (const prop in cartHTML.settings) {
-            this.cartBlock.style[prop] = cartHTML.settings[prop];
-        }
-    },
     fill() {
         let content = '';
-        if (shoppingCart.cartContent.length === 0)
+        if (this.content.length === 0)
             content += `<p>Корзина пуста</p>`;
         else {
-            for (let i = 0; i < shoppingCart.cartContent.length; i++) {
+            for (let i = 0; i < this.content.length; i++) {
                 for (let j = 0; j < catalog.products.length; j++) {
-                    if (shoppingCart.cartContent[i].itemId === catalog.products[j].itemId) {
-                        content += `<div style="width: ${100 / 3}%; height: 200px; border: 1px solid black; display: flex; align-items: center; flex-direction: column;">
+                    if (this.content[i].itemId === catalog.products[j].itemId) {
+                        content += `<div class="cart-item">
                                     <h3>${catalog.products[j].name}</h3>
                                     <ul>
                                         <li>Стоимость: $${catalog.products[j].price}</li>
-                                        <li>Количество: ${shoppingCart.cartContent[i].quantity}</li>
+                                        <li>Количество: ${this.content[i].quantity}</li>
                                     </ul>
                                 </div>`;
                     }
                 }
             }
-            content += `<p>В корзине ${shoppingCart.cartContent.length} товара(ов) на сумму $${shoppingCart.totalPrice()}.</p>`
+            content += `<p>В корзине ${this.content.length} товара(ов) на сумму $${this.totalPrice()}.</p>`
         }
         this.cartBlock.innerHTML = content;
         return this.cartBlock;
     },
-    initCart() {
-        cartHTML.style();
-        cartHTML.fill();
+
+    totalPrice() {
+        let sum = 0;
+        for (let i = 0; i < this.content.length; i++) {
+            for (let j = 0; j < catalog.products.length; j++) {
+                if (this.content[i].itemId === catalog.products[j].itemId) {
+                    sum += this.content[i].quantity * catalog.products[j].price;
+                }
+            }
+        }
+        return sum;
+    },
+
+    init() {
+        this.cartBlock = document.querySelector('.cart-block');
+        this.fill();
+
     }
 }
 
 // for empty cart testing
-// shoppingCart.cartContent = [];
+// cart.content = [];
 
-cartHTML.initCart();
+cart.init();
